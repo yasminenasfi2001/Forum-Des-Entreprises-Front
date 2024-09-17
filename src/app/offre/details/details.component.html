@@ -1,0 +1,77 @@
+<main class="page-content">
+        <div class="card bg-transparent shadow-none">
+            <div class="card-body">
+                <h6 class="mb-0 text-uppercase">Informations sur cet Offre</h6>
+                <div class="my-3 border-top"></div>
+                <div class="row row-cols-1 row-cols-lg-3 justify-content-center g-lg-5">
+                    <div class="col">
+                        <div class="card">
+                            <img [src]="offre.image" class="card-img-top" alt="...">
+                            <div class="card-body border-bottom">
+                                <h5 class="card-title">Titre : {{offre.intitule}}</h5>
+                                <p class="card-text">Description : {{offre.description}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nombre de places disponibles : {{offre.nbPlaces}}</li>
+                                <li class="list-group-item">Date de dépot : {{offre.dateDeCreation | date:'yyyy-MM-dd'}}</li>
+                                <li class="list-group-item">Nombre de depot pour cet offre : {{candidaturess.length}} </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                  <img [src]="offre.qrcode" alt="QR Code">
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table mb-0 table-striped text-center">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Nom</th>
+                        <th scope="col">Date de Candidature</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Lettre de Motivation</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    <tr *ngFor="let j of candidaturess">
+
+                        <td>{{j.user?.username}} </td>
+                        <td>{{j.dateDeCandidature | date:'yyyy-MM-dd HH:mm'}}</td>
+                        <td>   <ng-container *ngIf="j.status === 'Encours'">
+                          <span class="text-danger">En cours</span>
+                        </ng-container>
+                          <ng-container *ngIf="j.status === 'Traitee'">
+                            <span class="text-info">Traitée</span>
+                          </ng-container>
+                          <ng-container *ngIf="j.status === 'Refusee'">
+                            <span class="text-warning">Refusée</span>
+                          </ng-container>
+                          <ng-container *ngIf="j.status === 'Acceptee'">
+                            <span class="text-success">Acceptée</span>
+                          </ng-container>
+                        </td>
+                        <td>
+
+                          <a class="btn" (click)="downloadLettreMotivation(j)"><i class="bi bi-download" style="margin-right: 5px"></i>Télécharger</a></td>
+                        <td>
+                          <ng-container *ngIf="roleConnected === 'ROLE_EXPOSANT'">
+                            <a (click)="modifierExposant(j.idCandidature)" class="text-primary" style="margin-right: 10px;"><i class="bi bi-pencil"></i></a>
+                            <a (click)="deleteCand(j.idCandidature)" class="text-danger" style="margin-right: 10px"><i class="bi bi-trash-fill"></i></a>
+                            <a (click)="detailsExposant(j.idCandidature)" class="text-warning"><i class="bi bi-eye"></i></a>
+                          </ng-container>
+                          <ng-container *ngIf="roleConnected === 'ROLE_ADMIN'">
+                            <a (click)="detailsAdmin(j.idCandidature)" class="text-warning"><i class="bi bi-eye"></i></a>
+                          </ng-container>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>

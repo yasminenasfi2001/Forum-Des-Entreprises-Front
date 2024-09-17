@@ -1,0 +1,19 @@
+<main class="page-content">
+  <div class="card">
+    <div class="prompt-container">
+      <form (submit)="onSubmit()">
+        <label for="prompt">Poser une question:</label>
+        <input type="text" id="prompt" name="prompt" [(ngModel)]="prompt" />
+        <button type="submit">Générer</button>
+      </form>
+    </div>
+
+    <div class="response-container" *ngIf="response">
+      <p>{{ response }}</p>
+    </div>
+
+    <div class="error-container" *ngIf="error">
+      <p>{{ error }}</p>
+    </div>
+  </div>
+</main>

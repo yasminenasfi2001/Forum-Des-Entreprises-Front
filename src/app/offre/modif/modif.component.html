@@ -1,0 +1,41 @@
+    <main class="page-content" >
+      <div class="card bg-transparent shadow-none">
+    <h1 class="card-body text-center"> Modifier Offre</h1>
+  </div>
+  <div class="row">
+    <div class="col-xl-6 mx-auto">
+
+      <div class="card">
+        <div class="card-body">
+          <div class="border p-3 rounded">
+            <h6 class="mb-0 text-uppercase" >Formulaire de modification</h6>
+            <hr/>
+            <form class="row g-3" (ngSubmit)="update()">
+              <div class="col-12">
+                <label class="form-label">Intitule</label>
+                <input id="intitule" name="intitule" type="text" class="form-control" [(ngModel)]="offre.intitule" required minlength="10">
+                <small><div *ngIf="formErrors.intitule" class="text-danger">{{ formErrors.intitule }}</div></small>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Description</label>
+                <input class="form-control" id="description" name="description" type="text" [(ngModel)]="offre.description">
+                <small><div *ngIf="formErrors.description" class="text-danger">{{ formErrors.description }}</div></small>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Nombre de places</label>
+                <input type="number" id="nbPlaces" name="nbPlaces" class="form-control" [(ngModel)]="offre.nbPlaces">
+                <small><div *ngIf="formErrors.nbPlaces" class="text-danger">{{ formErrors.nbPlaces }}</div></small>
+              </div>
+
+              <div class="card-body text-center">
+                <button type="submit" class="btn btn-outline-success px-5 rounded-0">Modifier</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

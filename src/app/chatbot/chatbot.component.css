@@ -1,0 +1,56 @@
+/* Card styling */
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 500px; /* Adjust width as needed */
+}
+
+/* Prompt container */
+.prompt-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.prompt-container label {
+  flex: 1;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Input and button styling */
+input[type="text"],
+button[type="submit"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #444;
+}
+
+/* Response and error containers */
+.response-container,
+.error-container {
+  margin-bottom: 15px;
+}
+
+.response-container p,
+.error-container p {
+  font-size: 16px;
+}
+
+.error-container p {
+  color: red;
+}

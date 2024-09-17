@@ -1,0 +1,32 @@
+<main class="page-content">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex align-items-center">
+        <!-- Content here -->
+      </div>
+
+      <div class="home_content">
+        <br>
+        <div style="padding: 40px;">
+          <div class="card text-center">
+            <div class="card-header">
+              <b> Modifier le matériel {{four.intitule}}</b>
+            </div>
+
+            <div class="card-body">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="four.intitule" placeholder="intitule" aria-label="name" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <input type="number" class="form-control" [(ngModel)]="four.nbPieces" placeholder="nbr des places" aria-label="tel" aria-describedby="basic-addon1">
+              </div>
+
+              <button (click)="modify()" class="btn btn-primary pull-right">Modifier Matériel</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

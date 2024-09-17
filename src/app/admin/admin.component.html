@@ -1,0 +1,60 @@
+<main class="page-content">
+  <div class="container">
+    <h2>Admin Panel</h2>
+
+    <div *ngIf="users.length > 0">
+      <h3>Users</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+            <button class="btn btn-primary" (click)="toggleModify(user)">Modify</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="users.length === 0">
+      <p>No users found.</p>
+    </div>
+
+    <!-- Modify User Form -->
+    <div *ngIf="showModifyForm">
+      <h3>Modify User</h3>
+      <form (submit)="submitModifiedUser()" #modifyForm="ngForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="modifiedUser.username">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="modifiedUser.email">
+        </div>
+        <div class="form-group">
+          <label for="tel">Telephone:</label>
+          <input type="tel" class="form-control" id="tel" name="tel" [(ngModel)]="modifiedUser.tel">
+        </div>
+        <div class="form-group">
+          <label for="image" class="form-label">Image</label>
+          <input id="image" name="image" type="file" class="form-control" (change)="onFileChange($event)">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelModification()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</main>

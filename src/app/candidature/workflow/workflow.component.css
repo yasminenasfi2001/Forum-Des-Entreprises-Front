@@ -1,0 +1,33 @@
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse; /* Display stars from right to left */
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating label i {
+  font-size: 24px;
+  color: #ffc107; /* Default color for unselected stars */
+}
+
+.rating input:checked ~ label i,
+.rating input:checked ~ label ~ label i {
+  color: #f39c12; /* Color for selected stars */
+}
+
+.rating input:hover ~ label i,
+.rating input:hover ~ label ~ label i,
+.rating label:hover i {
+  color: #000; /* Color for hovered stars */
+}

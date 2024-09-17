@@ -1,0 +1,48 @@
+.tag,
+.close-tag {
+  display: inline-block;
+
+  background-color: #f1f1f1;
+  color: #333;
+  border-radius: 11px; /* Réduire le rayon de bordure */
+  padding: 2px 5px; /* Réduire le rembourrage */
+  margin-right: 5px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  font-size: 0.9rem; /* Réduire la taille de la police */
+}
+.close-tag i {
+  font-size: 0.8rem; /* Réduire la taille de l'icône */
+  margin-left: 6px; /* Ajouter un espace entre l'icône et le texte */
+
+}
+
+.close-tag:hover {
+  background-color: #ddd; /* Change la couleur de fond au survol */
+}
+
+.alert-box {
+  background-color: #ffcccc;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: shake 0.5s ease-in-out infinite alternate;
+}
+
+.alert-icon {
+  color: #721c24;
+  font-size: 24px;
+  margin-right: 15px;
+}
+
+.alert-message {
+  color: #721c24;
+  font-weight: bold;
+}
+
+@keyframes shake {
+  0% { transform: translateX(-5px); }
+  100% { transform: translateX(5px); }
+}

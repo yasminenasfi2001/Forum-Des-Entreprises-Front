@@ -1,0 +1,313 @@
+<ng-container *ngIf="roleConnected=='ROLE_ETUDIANT'">
+  <header class="top-header">
+    <nav class="navbar navbar-expand-lg justify-content-between">
+      <div class="mobile-toggle-icon fs-3">
+        <i class="bi bi-list"></i>
+      </div>
+      <div class="top-navbar-right ms-auto">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <img src="{{image}}" class="user-img" title="{{nom}}">
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header">
+      <div>
+        <img src="assets/logo.png" class="logo-icon" alt="logo icon">
+      </div>
+      <div>
+        <h4 class="logo-text">EspritForum</h4>
+      </div>
+      <div class="toggle-icon ms-auto">
+        <i class="bi bi-list"></i>
+      </div>
+    </div>
+
+
+    <ul class="metismenu" id="menu">
+      <li>
+        <a routerLink="">
+          <div class="parent-icon"><i class="bi bi-house-fill"></i></div>
+          <div class="menu-title">Home</div>
+        </a>
+      </li>
+      <li>
+      <a routerLink="profile">
+        <div class="parent-icon"><i class="bi bi-person"></i></div>
+        <div class="menu-title">Modifier mon Profile</div>
+      </a>
+      </li>
+      <li>
+      <a routerLink="myprofile">
+        <div class="parent-icon"><i class="bi bi-person"></i></div>
+        <div class="menu-title">My Profile</div>
+
+      </a>
+      </li>
+      <li>
+        <a *ngIf="!isUserVerified()" routerLink="verify-account">
+          <div  class="parent-icon"><i class="bi bi-check-circle-fill"></i></div>
+          <div class="menu-title">Verify Your Account</div>
+        </a>
+      </li>
+      <li class="menu-label">Sections</li>
+      <li>
+        <a routerLink="sessionet">
+          <div class="parent-icon"><i class="bi bi-building"></i></div>
+          <div class="menu-title">Sessions</div>
+        </a>
+        <a routerLink="offres">
+          <div class="parent-icon"><i class="bi bi-newspaper"></i></div>
+          <div class="menu-title">Offres de Stages</div>
+        </a>
+        <a routerLink="mesreclamation">
+          <div class="parent-icon"><i class="bi bi-book"></i></div>
+          <div class="menu-title">Mes Réclamations</div>
+        </a>
+        <a routerLink="ajouterre">
+          <div class="parent-icon"><i class="bi bi-person-fill"></i></div>
+          <div class="menu-title">Réclamer</div>
+        </a>
+        <a routerLink="mescandidatures">
+          <div class="parent-icon"><i class="bi bi-files"></i></div>
+          <div class="menu-title">Mes Candidatures</div>
+        </a>
+
+        <a routerLink="chatbot">
+          <div class="parent-icon"><i class="bi bi-wrench"></i></div>
+          <div class="menu-title">Chat Bot</div>
+        </a>
+
+        <a routerLink="calendaret">
+          <div class="parent-icon"><i class="bi bi-calendar"></i></div>
+          <div class="menu-title">Calendar</div>
+        </a>
+        <a class="text-decoration-none" (click)="logout()">
+          <i class="bi bi-arrow-left-circle"></i>
+          <div class="menu-title">Se Déconnecter</div>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+
+
+  <router-outlet></router-outlet>
+</ng-container>
+<ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+
+  <header class="top-header">
+    <nav class="navbar navbar-expand-lg justify-content-between">
+      <div class="mobile-toggle-icon fs-3">
+        <i class="bi bi-list"></i>
+      </div>
+      <div class="top-navbar-right ms-auto">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <img src="{{image}}" class="user-img" title="{{nom}}">
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header">
+      <div>
+        <img src="assets/logo.png" class="logo-icon" alt="logo icon">
+      </div>
+      <div>
+        <h4 class="logo-text">EspritForum</h4>
+      </div>
+      <div class="toggle-icon ms-auto">
+        <i class="bi bi-list"></i>
+      </div>
+    </div>
+
+    <ul class="metismenu" id="menu">
+      <li>
+        <a routerLink="">
+          <div class="parent-icon"><i class="bi bi-house-fill"></i></div>
+          <div class="menu-title">Home</div>
+        </a>
+      </li>
+      <li>
+      <!--<a routerLink="admin" >
+        <div class="parent-icon"><i class="bi bi-shield-fill-check"></i></div>
+        <div class="menu-title">User Management</div>
+      </a>-->
+      </li>
+      <li>
+        <a routerLink="exvalidate">
+          <div class="parent-icon"><i class="bi bi-shield-fill-exclamation"></i></div>
+          <div class="menu-title">Validate Exposant</div>
+
+        </a>
+      </li>
+      <li class="menu-label">Sections</li>
+      <li>
+        <a routerLink="sessiona">
+          <div class="parent-icon"><i class="bi bi-building"></i></div>
+          <div class="menu-title">Sessions</div>
+        </a>
+      </li>
+
+
+      <li>
+        <a routerLink="addsess">
+          <div class="parent-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-add" viewBox="0 0 16 16">
+            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0"/>
+            <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a.5.5 0 0 1-1 0V1H3v14h3v-2.5a.5.5 0 0 1 .5-.5H8v4H3a1 1 0 0 1-1-1z"/>
+            <path d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+          </svg></div>
+          <div class="menu-title">Ajouter Session</div>
+        </a>
+      </li>
+      <li>
+        <a routerLink="materiels">
+          <div class="parent-icon"><i class="bi bi-wrench"></i></div>
+          <div class="menu-title">Matériels</div>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="offress">
+          <div class="parent-icon"><i class="bi bi-newspaper"></i></div>
+          <div class="menu-title">Offres de Stages</div>
+        </a>
+      </li>
+      <li>
+        <a routerLink="candidatures">
+          <div class="parent-icon"><i class="bi bi-person-lines-fill"></i></div>
+          <div class="menu-title">Toutes les Candidatures</div>
+        </a>
+      </li>
+      <li>
+        <a routerLink="reclamations">
+          <div class="parent-icon"><i class="bi bi-book"></i></div>
+          <div class="menu-title">Les Réclamations</div>
+        </a>
+      </li>
+      <li>
+        <a routerLink="chatbot">
+          <div class="parent-icon"><i class="bi bi-wrench"></i></div>
+          <div class="menu-title">Chat Bot</div>
+        </a>
+      </li>
+      <li>
+        <a routerLink="calendar">
+          <div class="parent-icon"><i class="bi bi-calendar"></i></div>
+          <div class="menu-title">Calendar</div>
+        </a>
+      </li>
+      <li>
+        <a class="text-decoration-none" (click)="logout()">
+          <div class="parent-icon"><i class="bi bi-arrow-left-circle"></i></div>
+          <div class="menu-title">Se Déconnecter</div>
+        </a>
+      </li>
+
+    </ul>
+
+  </aside>
+
+
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-container *ngIf="roleConnected=='ROLE_EXPOSANT'">
+
+  <header class="top-header">
+    <nav class="navbar navbar-expand-lg justify-content-between">
+      <div class="mobile-toggle-icon fs-3">
+        <i class="bi bi-list"></i>
+      </div>
+      <div class="top-navbar-right ms-auto">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <img src="{{image}}" class="user-img" title="{{nom}}">
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header">
+      <div>
+        <img src="assets/logo.png" class="logo-icon" alt="logo icon">
+      </div>
+      <div>
+        <h4 class="logo-text">EspritForum</h4>
+      </div>
+      <div class="toggle-icon ms-auto">
+        <i class="bi bi-list"></i>
+      </div>
+    </div>
+
+
+    <ul class="metismenu" id="menu">
+            <li>
+                <a routerLink="" >
+                    <div class="parent-icon"><i class="bi bi-house-fill"></i>
+                    </div>
+                    <div class="menu-title">Home</div>
+                </a>
+
+            </li>
+            <li class="menu-label">Sections</li>
+            <li>
+
+              <a routerLink="sessionex"  >
+                <div class="parent-icon"><i class="bi bi-building"></i>
+                </div>
+                <div class="menu-title">Sessions</div>
+              </a>
+
+        <a routerLink="addmat">
+          <div class="parent-icon"><i class="bi bi-plus-circle"></i></div>
+          <div class="menu-title">Ajouter Matériel</div>
+        </a>
+
+                <a routerLink="mesoffres"  >
+                    <div class="parent-icon"><i class="bi bi-newspaper"></i>
+                    </div>
+                    <div class="menu-title">Mes Offres de Stages Proposés</div>
+                </a>
+                <a routerLink="mesreclamatios"  >
+                    <div class="parent-icon"><i class="bi bi-book"></i>
+                    </div>
+                    <div class="menu-title">Mes Réclamations</div>
+                </a>
+                <a routerLink="ajouterrec"  >
+                    <div class="parent-icon"><i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="menu-title">Réclamer</div>
+                </a>
+              <a routerLink="calendarex"  >
+                <div class="parent-icon"><i class="bi bi-calendar"></i>
+                </div>
+                <div class="menu-title">Calendar</div>
+              </a>
+
+        <a routerLink="chatbot">
+          <div class="parent-icon"><i class="bi bi-wrench"></i></div>
+          <div class="menu-title">Chat Bot</div>
+        </a>
+
+                <a class="text-decoration-none" (click)="logout()" >
+                    <i class="bi bi-arrow-left-circle"></i>
+                    <div class="menu-title">Se Déconnecter</div>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <router-outlet></router-outlet>
+</ng-container>

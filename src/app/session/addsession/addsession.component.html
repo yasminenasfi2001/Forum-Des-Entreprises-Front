@@ -1,0 +1,39 @@
+<main class="page-content">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0"> Ajouter une Session</h5>
+    </div>
+    <div class="card-body">
+      <div class="d-flex align-items-center">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="fournisseur.intitule" placeholder="Intitule"
+               aria-label="Intitule" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <input type="number" class="form-control" [(ngModel)]="fournisseur.nbrDePlaces" placeholder="Nombre de places"
+               aria-label="Nombre de places" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <input type="date" class="form-control" [(ngModel)]="fournisseur.dateSession" placeholder="Date"
+               aria-label="Date" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <select class="form-select" [(ngModel)]="fournisseur.pack" aria-label="Pack">
+          <option *ngFor="let pack of packs" [value]="pack">{{ pack }}</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <label for="captcha">Captcha:</label>
+        <div class="captcha-container">
+          <span class="captcha-value">{{ captchaValue }}</span>
+          <input type="text" class="form-control" [(ngModel)]="enteredCaptcha" placeholder="Enter Captcha"
+                 aria-label="Captcha" aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <button (click)="ajouter()" class="btn btn-primary pull-right">Ajouter une session</button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</main>
+

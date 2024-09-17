@@ -1,0 +1,59 @@
+<main class="page-content" >
+  <div class="card">
+    <div class="card-body">
+
+      <div class="d-flex align-items-center">
+        <h5 class="mb-0">Les Candidatures </h5>
+        <input
+          class="form-control ps-5"
+          type="text"
+          placeholder="search"
+          [(ngModel)]="searchText"
+          (input)="filterCandidatures()"
+        />
+
+      </div>
+      <div class="table-responsive mt-3">
+        <table class="table align-middle mb-0">
+          <thead class="table-light">
+          <tr>
+            <th>Username</th>
+            <th>Photo</th>
+            <th>Position</th>
+            <th>Lettre De Motivation</th>
+            <th>Status</th>
+            <th>Experience</th>
+            <th>Formation</th>
+            <th>Date De Candidature</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let i of filteredCandidatures">
+            <td>{{i.user?.username}}</td>
+            <td><img [src]="i.user?.image" class="product-img-2" alt="product img"></td>
+            <td>{{i.offre?.intitule}}</td>
+            <td><a class="btn" (click)="downloadLettreMotivation(i)"><i class="bi bi-download" style="margin-right: 5px"></i>Télécharger</a></td>
+            <td>
+              <ng-container *ngIf="i.status === 'Encours'">
+              <span class="badge bg-light-danger text-danger w-100">{{i.status}}</span>
+              </ng-container>
+              <ng-container *ngIf="i.status === 'Traitee'">
+                <span class="badge bg-light-info text-info w-100">{{i.status}}</span>
+              </ng-container>
+              <ng-container *ngIf="i.status === 'Refusee'">
+                <span class="badge bg-light-warning text-warning w-100">{{i.status}}</span>
+              </ng-container>
+              <ng-container *ngIf="i.status === 'Acceptee'">
+                <span class="badge bg-light-success text-success w-100">{{i.status}}</span>
+              </ng-container>
+            </td>
+            <td>{{i.experience}}</td>
+            <td>{{i.formation}}</td>
+            <td>{{i.dateDeCandidature| date:'MMM d, y H:mm'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,41 @@
+<main class="page-content">
+
+
+
+      <div class="container">
+        <div class="card bg-transparent shadow-none">
+          <div class="card-header">
+            <h6 class="mb-0 text-uppercase">Mes candidatures</h6>
+          </div>
+          <div class="card-body">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col-md-4" *ngFor="let i of ToShow; let idx = index">
+                      <div class="card mb-4 border-0 shadow">
+                        <div class="card-body">
+                          <h6 class="mb-3 text-uppercase">{{ i.offre?.intitule }}</h6>
+                          <p class="card-text"><strong>Expérience:</strong> {{ i.experience }}</p>
+                          <p class="card-text"><strong>Formation:</strong> {{ i.formation }}</p>
+                          <p class="card-text"><strong>Compétences:</strong> {{ i.competence }}</p>
+                          <p class="card-text"><strong>Langues:</strong> {{ i.langues }}</p>
+                          <p class="card-text"><strong>Status:</strong> {{ i.status }}</p>
+                          <div class="d-flex justify-content-between align-items-center mt-3">
+                            <button *ngIf="i.status === 'Encours'" (click)="editMyCand(i.idCandidature)" class="btn btn-danger btn-sm"><i class="bi bi-pencil"></i></button>
+                            <button (click)="goToWorkflow(i.idCandidature)" class="btn btn-warning btn-sm"><i class="bi bi-graph-up"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</main>

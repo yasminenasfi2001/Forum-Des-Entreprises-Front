@@ -1,0 +1,50 @@
+<main class="page-content">
+  <div class="container">
+    <div *ngFor="let user of exposantUsers" class="user-card">
+      <p class="username">{{ user.username }}</p>
+      <img *ngIf="user.image" [src]="user.image" alt="User Image" class="user-image">
+      <button (click)="validateExposant(user.id)" class="btn btn-primary">Validate</button>
+    </div>
+  </div>
+</main>
+<style>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.user-card {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.username {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.user-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+</style>

@@ -1,0 +1,55 @@
+<main class="page-content" >
+    <div class="card bg-transparent shadow-none">
+        <div class="card-body">
+            <h6 class="mb-0 text-uppercase">Informations sur cet Offre</h6>
+            <div class="my-3 border-top"></div>
+            <div class="row row-cols-1 row-cols-lg-3 justify-content-center g-lg-5">
+                <div class="col">
+                    <div class="card">
+                        <img [src]="offre.image" class="card-img-top" alt="...">
+                        <div class="card-body border-bottom">
+                            <h5 class="card-title">Titre : {{offre.intitule}}</h5>
+                            <p class="card-text">Description : {{offre.description}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nombre de places disponibles : {{offre.nbPlaces}}</li>
+                            <li class="list-group-item">Date de dépot : {{offre.dateDeCreation | date:'yyyy-MM-dd'}}</li>
+                            <li class="list-group-item">Nombre de depot pour cet offre : {{offre.candidaturess.length}} </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table mb-0 table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Date de Candidature</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">CV</th>
+                    <th scope="col">Lettre de Motivation</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <tr *ngFor="let candidature of offre.candidaturess">
+
+                    <td>{{candidature.user.username}}</td>
+                    <td>{{candidature.dateDeCandidature | date:'yyyy-MM-dd HH:mm'}}</td>
+
+                    <td>{{candidature.status}}</td>
+                    <td><a [href]="'data:text/plain;base64,' + candidature.cv" download="cv.txt">Télécharger CV</a></td>
+                    <td>
+                      <a [href]="'data:text/plain;base64,' + candidature.lettreDeMotivation" download="lettreDeMotivation.txt">Télécharger Lettre de Motivation</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<br><br>

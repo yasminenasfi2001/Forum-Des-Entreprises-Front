@@ -1,0 +1,57 @@
+<main class="page-content">
+  <div class="ms-lg-3 mt-4">
+
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <button class="btn btn-secondary btn-sm" (click)="sortByStatus()"><i class="bi bi-arrow-down"
+                                                                           style="margin-right: 5px"></i>Sort by Status
+      </button>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <table id="example2" class="table table-striped">
+        <thead>
+        <tr>
+
+          <th scope="col">Titre</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date de Reclamation</th>
+          <th scope="col">Status</th>
+          <th scope="col">Image</th>
+          <th scope="col">User</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let i of ToShow; let idx = index">
+
+          <td>{{ i.titre }}</td>
+          <td>{{ i.description }}</td>
+          <td>{{ i.dateDeReclamation  | date:'yyyy-MM-dd'}}</td>
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="statusCheckbox{{i.idReclamation}}"
+                     [(ngModel)]="i.status" (change)="updateStatus(i)"
+                     [disabled]="i.status === true || i.status === undefined">
+              <label class="form-check-label" for="statusCheckbox{{i.idReclamation}}"
+                     [ngClass]="{'text-danger': !i.status, 'text-primary': i.status}">
+                {{ i.status ? 'Treated' : 'Not Treated'  }}
+              </label>
+            </div>
+          </td>
+          <td><img [src]="i.image" width="50px" height="50px">
+          </td>
+          <td>{{i.user?.username}}</td>
+          <td>
+            <button (click)="delete(i.idReclamation)" class="btn btn-sm me-1"><i class="bi bi-trash text-danger"></i>
+            </button>
+            <!--<button (click)="modifier(i.idReclamation)" class="btn btn-secondary btn-sm" [disabled]="i.status">Modifier</button>-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>

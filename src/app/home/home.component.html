@@ -1,0 +1,342 @@
+<style>
+  .chart-container canvas {
+    width: 300px;
+    height: 300px;
+  }
+</style>
+
+<main class="page-content">
+  <div class="page-breadcrumb d-none d-sm-flex align-items-center">
+    <div class="breadcrumb-title pe-3 text-white">Home</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><i class="bi bi-house text-white"></i>
+        </ol>
+      </nav>
+    </div>
+
+  </div>
+  <div class="profile-cover bg-dark"></div>
+
+  <div class="row">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="mb-0">APP0 2023-2024 </h5>
+        <hr>
+
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"></li>
+            <li data-bs-target="#carouselExampleDark" data-bs-slide-to="1" class=""></li>
+            <li data-bs-target="#carouselExampleDark" data-bs-slide-to="2" class=""></li>
+          </ol>
+          <div class="carousel-inner">
+            <div style="height: 800 px" class="carousel-item active" data-bs-interval="2000">
+              <img src="assets/APP0-1.jpg" class="d-block w-100" alt="..." height="600px">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="assets/APP0-2.jpg" class="d-block w-100" alt="..." height="600px">
+            </div>
+            <div class="carousel-item">
+              <img src="assets/APP0-3.jpg" class="d-block w-100" alt="..." height="600px">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleDark" role="button" data-bs-slide="prev"> <span
+            class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden text-white">Previous</span>
+          </a>
+
+
+          <a class="carousel-control-next" href="#carouselExampleDark" role="button" data-bs-slide="next"> <span
+            class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden text-white">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+  <div class="row">
+    <div class="col-12 col-lg-12 col-xl-8 d-flex">
+      <div class="card radius-10 w-100">
+        <div class="card-header bg-transparent">
+          <div class="row g-3 align-items-center">
+            <div class="col">
+              <h5 class="mb-0">Live percentage des emplois de titre "Software Engineer" par catégorie selon
+                LinkedIn</h5>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body">
+            <script src="path/to/chartjs/dist/chart.umd.js"></script>
+            <div class="chart-container1" style="max-width: 100%; overflow: hidden;">
+              <canvas id="MyChart1" class="chart-canvas" style="max-height: 100%; max-width: 100%;">{{chart1}}</canvas>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+      <div class="col-12 col-lg-12 col-xl-4 d-flex">
+        <div class="card radius-10 w-100">
+          <div class="card-header bg-transparent">
+            <div class="row g-3 align-items-center">
+              <div class="col">
+                <ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+                  <h5 class="mb-0">Le nombre des reclamtion correspondant pour chaque status</h5>
+                </ng-container>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="best-product p-2 mb-3 ps ps--active-y">
+              <ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+                <div class="card-body">
+                  <script src="path/to/chartjs/dist/chart.umd.js"></script>
+                  <div class="chart-container">
+                    <canvas id="MyChart" class="chart-canvas">{{chart}}</canvas>
+                  </div>
+                </div>
+              </ng-container>
+              <div class="ps__rail-x" style="left: 0px; bottom: -78px;">
+                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+              </div>
+              <div class="ps__rail-y" style="top: 78px; height: 420px; right: 0px;">
+                <div class="ps__thumb-y" tabindex="0" style="top: 58px; height: 315px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+    <ng-container *ngIf="roleConnected=='ROLE_ETUDIANT'">
+      <div class="col">
+        <div class="card radius-10">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="">
+                <p class="mb-1">{{currentDate | date:'MMM d, y H:mm'}}</p>
+                <h4 class="mb-0">{{weatherData?.name}}</h4>
+                <h6 class="mb-0">{{weatherData?.main?.temp}} °C</h6>
+
+              </div>
+              <div class="ms-auto fs-2 text-danger">
+                <img src="assets/tunis.png" width="75px" height="75px">
+              </div>
+            </div>
+
+            <small class="mb-0"><img
+              [src]="'http://openweathermap.org/img/wn/' + weatherData?.weather[0]?.icon + '.png'"
+              alt="Weather Icon"> <span>{{weatherData?.weather[0]?.description}}</span></small><br>
+            <small class="mb-0"><img src="assets/icons8-wind.gif" alt="Weather Icon"> <span>{{weatherData?.wind?.speed}}
+              km/h</span></small>
+          </div>
+        </div>
+        <br>
+
+        <div class="card radius-10">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="">
+                <p class="mb-1">Les Offres Totales</p>
+                <h4 class="mb-0 text-success">{{nb}}</h4>
+              </div>
+              <div class="ms-auto fs-2 text-success">
+                <i class="bi bi-cup"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <br>
+        <div class="card radius-10">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="">
+                <p class="mb-1">Les Candidature Totales</p>
+                <h4 class="mb-0 text-info">{{nbs}}</h4>
+              </div>
+              <div class="ms-auto fs-2 text-info">
+                <i class="bi bi-book"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </ng-container>
+
+  </div>
+
+  <br><br><br><br>
+  <h3 class="mb-0 text-uppercase">Nos Partenaires </h3>
+  <hr>
+
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-6 row-cols-xxl-6">
+    <img src="assets/vermegpng.png">
+    <img src="assets/ooredoo.png">
+    <img src="assets/ardia.jpg">
+    <img src="assets/microsoft.png">
+    <img src="assets/google.png">
+    <img src="assets/cisco.jpg">
+  </div>
+  <br><br><br><br>
+  <h3 class="mb-0 text-uppercase">Témoignages</h3>
+  <hr>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <!--<ol class="carousel-indicators">
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+
+      <li *ngFor="let feedback of ToShow; let i = index" [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i + 1"></li>
+    </ol>-->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-block w-100" alt="...">
+          <div class="card radius-10">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <img src="assets/esprit.jpg" class="rounded-circle p-1 border" width="90" height="90" alt="...">
+                <div class="flex-grow-1 ms-3">
+                  <h5 class="mt-0">Groupe Esprit</h5>
+                  <p class="mb-0">
+                    Nos clients parlent de leur expérience avec nous ! Découvrez ce qu'ils ont à dire sur nos produits,
+                    services et engagement envers la satisfaction client. Parcourez les témoignages ci-dessous pour
+                    avoir un aperçu de ce que nos clients pensent de nous.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" *ngFor="let i of ToShow;">
+        <div class="d-block w-100" alt="...">
+          <div class="card radius-10">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <img [src]="i.user?.image" class="rounded-circle p-1 border" width="90" height="90" alt="...">
+                <div class="flex-grow-1 ms-3">
+                  <h6 class="mt-0">{{i.user?.email}}</h6>
+                  <blockquote class="blockquote text-center mb-0">{{i.motif}}<br><br>
+                    <footer class="blockquote-footer"> {{i.user?.username}}</footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev"> <span
+      class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next"> <span
+      class="carousel-control-next-icon text-black" aria-hidden="true"></span>
+    </a>
+  </div>
+  <br><br><br><br>
+  <h3 class="mb-0 text-uppercase">Contactez nous</h3>
+  <hr>
+  <section id="" class="contact-area ptb-100">
+    <section id="contact" class="contact-area">
+      <div class="container">
+        <div class="margin-top-60 row">
+          <div class="col-lg-4 col-md-4">
+            <div class="address-area">
+              <div class=""><h4 class="text-danger"><i class="bi bi-geo-alt-fill"></i> Adresse</h4>
+                <p>1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</p></div><br>
+              <div class="email"><h4 class="text-danger"><i class="bi bi-envelope"></i> Email</h4><a href="/">contact@esprit.tn</a></div><br>
+              <div class="phone"><h4 class="text-danger"><i class="bi bi-phone"></i>Téléphone</h4><br>
+                <p>T (216) 70 250 000</p></div>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="contact-form">
+              <form id="contactForm">
+                <div class="row">
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group"><input name="name" id="name" placeholder="Votre Nom..." autocomplete="off"
+                                                   class="undefined form-control" value="">
+                      <div class="invalid-feedback">Ce Champ est requis</div>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    <br>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group"><input name="email" id="email" type="email"
+                                                   placeholder="Votre Adresse Mail..." autocomplete="off"
+                                                   class="undefined form-control" value="">
+                      <div class="invalid-feedback">Ce Champ est requis</div>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group"><input name="subject" id="subject" type="text" placeholder="Sujet..."
+                                                   autocomplete="off" class="undefined form-control" value="">
+                      <div class="invalid-feedback">Ce Champ est requis</div>
+                    </div>
+                    <br>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group"><input name="number" id="number" type="text"
+                                                   placeholder="Numéro de Téléphone..." autocomplete="off"
+                                                   class="undefined form-control" value="">
+                      <div class="invalid-feedback">Doit être entre 8 et 13 chiffres</div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group"><select class=" form-control" name="service"
+                                                    placeholder="Service..." id="service">
+                      <option value="">Service...</option>
+                      <option value="admission">Admission</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                          <br>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="form-group"><textarea name="message" id="description" placeholder="Votre Message..."
+                                                      rows="5" autocomplete="off"
+                                                      class="undefined form-control"></textarea>
+                      <div class="invalid-feedback">Ce Champ est requis</div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+                <div class="center-wrap">
+                  <div class="button">
+                    <button class="btn btn-outline-danger" type="submit">Envoyer <i class="bi bi-arrow-right"></i></button>
+                    <div class="mask"></div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <button class="btn btn-outline-success" (click)="goToSharedRoom();generateSharedRoomLink()"><i class="bi bi-camera-video-fill"></i> Watch stream </button>
+
+</main>
+
+
+<br>
+<br>
+<br>
+<br>
+
+

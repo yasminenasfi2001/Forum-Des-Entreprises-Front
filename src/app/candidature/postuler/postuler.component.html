@@ -1,0 +1,114 @@
+<main class="page-content">
+  <div class="card shadow">
+    <div class="card-header">
+      <h6 class="mb-0 text-uppercase">pOSTULER</h6>
+    </div>
+    <div class="card-body">
+      <ng-container *ngIf="placesDispo === 0; else formContent">
+        <div class="alert-box">
+          <div class="alert-icon">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+          </div>
+          <div class="alert-message">
+            <span>Nombre de places insuffisant</span>
+          </div>
+        </div>
+
+      </ng-container>
+      <ng-template #formContent>
+        <div class="row">
+          <div class="col-xl-6 mx-auto">
+
+            <div class="card">
+              <div class="card-body">
+                <div class="border p-3 rounded">
+                  <form class="row g-3" (ngSubmit)="save()">
+                    <div class="col-12">
+                      <label class="form-label">Experience</label>
+                      <input id="experience" name="experience" type="text" [(ngModel)]="candidature.experience" class="form-control">
+                    </div>
+                    <div>
+                      <label>Compétences:</label>
+                      <div>
+    <span *ngFor="let competence of availableCompetences" class="tag" (click)="addCompetence(competence)">
+      {{ competence }}
+    </span>
+                      </div>
+                    </div>
+                    <div *ngIf="selectedCompetences.length > 0">
+                      <div>
+
+      <span  *ngFor="let competence of selectedCompetences" class="tag selected" class="close-tag" (click)="removeCompetence(competence)">
+        {{ competence }} <i class="bi bi-x"></i>
+      </span>
+
+                      </div>
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <label for="newCompetence" class="col-form-label">Nouvelle compétence :</label>
+                        </div>
+                        <div class="col">
+                          <input id="newCompetence" type="text" class="form-control" [(ngModel)]="newCompetence" name="newCompetence">
+                        </div>
+                        <div class="col-auto">
+                          <button class="btn btn-outline-secondary rounded-circle" (click)="addNewCompetence()">
+                            <i class="bi bi-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label>Langues:</label>
+                      <div>
+    <span *ngFor="let langue of availableLangues" class="tag" (click)="addLangue(langue)">
+      {{ langue }}
+    </span>
+                        <div *ngIf="selectedLangues.length > 0">
+                          <div>
+        <span *ngFor="let langue of selectedLangues" class="tag selected" (click)="removeLangue(langue)">
+          {{ langue }} <i class="bi bi-x"></i>
+        </span>
+                          </div>
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <label for="newLangue" class="col-form-label">Nouvelle langue :</label>
+                            </div>
+                            <div class="col">
+                              <input id="newLangue" type="text" class="form-control" [(ngModel)]="newLangue" name="newLangue">
+                            </div>
+                            <div class="col-auto">
+                              <button class="btn btn-outline-secondary rounded-circle" (click)="addNewLangue()">
+                                <i class="bi bi-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Formations</label>
+                      <input class="form-control" id="formation" name="formation"  type="text" [(ngModel)]="candidature.formation">
+                    </div>
+
+                    <div class="col-12">
+                      <label for="lettreDeMotivation" class="form-label">Lettre de Motivation</label>
+                      <input id="lettreDeMotivation" name="lettreDeMotivation" type="file" class="form-control" (change)="onFileChange($event)" [(ngModel)]="candidature.lettreDeMotivation">
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                      <button type="submit" class="btn btn-primary rounded-0">
+                        <i class="bi bi-check-circle"></i> Postuler
+                      </button>
+
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</main>

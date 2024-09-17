@@ -1,0 +1,37 @@
+<main class="page-content">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Ajouter une Matériel</h5>
+    </div>
+    <div class="card-body">
+
+
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="fournisseur.intitule" placeholder="Intitule"
+               aria-label="name" aria-describedby="basic-addon1">
+      </div>
+      <br>
+
+      <div class="input-group mb-3">
+        <input type="number" class="form-control" [(ngModel)]="fournisseur.nbPieces" placeholder="Nombre de piéces"
+               aria-label="tel" aria-describedby="basic-addon1">
+      </div>
+
+      <div class="input-group mb-3">
+        <input type="number" class="form-control" [(ngModel)]="fournisseur.prix" placeholder="Prix ..." aria-label="tel"
+               aria-describedby="basic-addon1">
+      </div>
+
+      <div class="input-group mb-3">
+        <select class="form-select" [(ngModel)]="fournisseur.pack" aria-label="Pack">
+          <option *ngFor="let pack of packs" [value]="pack">{{ pack }}</option>
+        </select>
+      </div>
+
+      <button (click)="ajouter()" class="btn btn-primary pull-right">Ajouter materiel</button>
+      <div class="clearfix"></div>
+
+    </div>
+  </div>
+
+</main>

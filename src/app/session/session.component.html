@@ -1,0 +1,70 @@
+<main class="page-content">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex align-items-center">
+        <h5 class="mb-0">Les Sessions </h5>
+        <input class="form-control ps-5" type="text" placeholder="search" [(ngModel)]="intitule"
+               (ngModelChange)="Search()"/>
+
+      </div>
+      <div class="table-responsive mt-3">
+        <table class="table text-center align-middle mb-0">
+          <thead class="table-light">
+          <tr>
+            <th>Intitule</th>
+            <th>Nombres de places</th>
+            <th>Date de Session</th>
+            <ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+              <th>Modifier</th>
+              <th>Supprimer</th>
+            </ng-container>
+            <ng-container *ngIf="roleConnected=='ROLE_EXPOSANT'">
+              <th>Ajouter Offre</th>
+            </ng-container>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let fournisseur of fournisseurs; let i = index">
+            <td>{{ fournisseur.intitule }}</td>
+            <td>{{ fournisseur.nbrDePlaces }}</td>
+            <td>{{ fournisseur.dateSession | date: 'MMM d, y H:mm' }}</td>
+            <ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+              <td>
+                <div class="edit" *ngIf="isSessionInFuture(fournisseur.dateSession)">
+                  <i class="bi bi-pencil" data-toggle="tooltip" title="Edit"
+                     (click)="modify(fournisseur.idSession)"></i>
+                </div>
+              </td>
+              <td>
+                <div class="delete" *ngIf="isSessionInFuture(fournisseur.dateSession)"
+                     (click)="deleteSession(fournisseur.idSession)">
+                  <i class="bi bi-trash-fill"></i>
+                </div>
+              </td>
+            </ng-container>
+            <td>
+              <ng-container *ngIf="roleConnected=='ROLE_EXPOSANT'">
+                <td>
+                  <button class="btn btn-outline-success" *ngIf="isSessionInFuture(fournisseur.dateSession)"
+                          style="margin-right: 4px" (click)="cliqueBoutonVert()" [hidden]="boutonVertClique">
+                    <i class="bi bi-cash"></i>
+                  </button>
+                  <button class="btn btn-outline-dark" *ngIf="isSessionInFuture(fournisseur.dateSession)"
+                          [disabled]="!boutonVertClique" (click)="ajouteroffre(fournisseur.idSession)">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                </td>
+              </ng-container>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="max-width: 1100px; padding-left:15%">
+        <div>
+          <canvas #myChart width="3" height="1.5"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

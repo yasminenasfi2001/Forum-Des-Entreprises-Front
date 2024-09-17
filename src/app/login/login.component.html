@@ -1,0 +1,236 @@
+<ng-container *ngIf="test==true;else elseBlock">
+  <div class="wrapper">
+
+    <main class="authentication-content">
+      <div class="container-fluid">
+        <div class="authentication-card">
+          <div class="card shadow rounded-0 overflow-hidden">
+            <div class="row g-0">
+              <div class="col-lg-6 bg-login d-flex align-items-center justify-content-center">
+                <img src="assets/esprit.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-6">
+                <div class="card-body p-4 p-sm-5">
+                  <h1 class="card-title">S'authentifier</h1>
+                  <h3 class="card-text mb-5">"Empowering Dreams, Igniting Futures: Where Passion Meets Opportunity!"!</h3>
+                  <ng-container *ngIf="test1==true;else elseBlock1">
+                    <form class="form-body" *ngIf="!isLoggedIn" name="signUpForm"  (ngSubmit)="f.form.valid && onSignUp()" #f="ngForm" novalidate>
+
+
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label class="form-label">Entrer le Username</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-envelope-fill"></i></div>
+                            <input type="email" class="form-control radius-30 ps-5" name="username" [(ngModel)]="signUpForm.username" required #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+                          </div>
+                          <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
+                            Username is required!
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label  class="form-label">Entrer Mot De Passe</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-lock-fill"></i></div>
+                            <input type="password" class="form-control radius-30 ps-5" name="password"  [(ngModel)]="signUpForm.password" required minlength="4" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+                          </div>
+
+                        </div>
+
+                        <label class="form-label">Enter 2FA Code</label>
+                        <div class="ms-auto position-relative">
+                          <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-shield-lock-fill"></i></div>
+                          <input type="text" class="form-control radius-30 ps-5" name="twoFactorCode" [(ngModel)]="signUpForm.twoFactorCode" required #twoFactorCode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && twoFactorCode.errors }">
+                        </div>
+                        <div *ngIf="twoFactorCode.errors && f.submitted" class="invalid-feedback">
+                          2FA Code is required!
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+                          <label class="form-check-label" for="flexSwitchCheckChecked">Rapelle moi</label>
+
+
+
+                        </div>
+                      </div>
+                      <div class="col-6 text-end">
+                        <a href="#" (click)="forgotPasswordClicked()">Mot de passe oublié ?</a>
+                      </div>
+
+                      <ng-container *ngIf="showForgotPasswordForm">
+                        <div class="col-12">
+                          <label class="form-label">Email Address for Password Reset</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-envelope-fill"></i></div>
+                            <input type="email" class="form-control radius-30 ps-5" name="email" [(ngModel)]="forgotPasswordForm.email" required>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="d-grid">
+                            <button class="btn btn-primary radius-30" (click)="sendResetPasswordEmail()">Send Reset Password Email</button>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <div class="col-12">
+                        <div class="d-grid">
+                          <button type="submit" class="btn btn-primary radius-30">Sign In</button>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="col-12">
+                        <p class="mb-0">Vous n'avez pas de compte ? <a (click)="onClick()" style="color:#1a2232;text-decoration: underline">Fais Un Compte ici</a></p>
+                      </div>
+                      <div class="col-12">
+                        <p class="mb-0">Devenir un exposant ? <a (click)="onClick1()" style="color:#1a2232;text-decoration: underline">Cliquez ici</a></p>
+                      </div>
+
+                    </form>
+                  </ng-container>
+                  <ng-template #elseBlock1>
+                    <form class="form-body" *ngIf="!isLoggedIn" name="exposantForm" (ngSubmit)="fExposant.form.valid && registerExposant()" #fExposant="ngForm" novalidate>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label class="form-label">Username</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-person-fill"></i></div>
+                            <input type="text" class="form-control radius-30 ps-5" name="username" [(ngModel)]="exposantForm.username" required #username="ngModel">
+                          </div>
+                          <div *ngIf="username.errors && fExposant.submitted" class="invalid-feedback">
+                            Username is required!
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Email Address</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-envelope-fill"></i></div>
+                            <input type="email" class="form-control radius-30 ps-5" name="email" [(ngModel)]="exposantForm.email" required #email="ngModel">
+                          </div>
+                          <div *ngIf="email.errors && fExposant.submitted" class="invalid-feedback">
+                            Invalid email address!
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Password</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-lock-fill"></i></div>
+                            <input type="password" class="form-control radius-30 ps-5" name="password" [(ngModel)]="exposantForm.password" required minlength="4" #password="ngModel">
+                          </div>
+                          <div *ngIf="password.errors && fExposant.submitted" class="invalid-feedback">
+                            Password must be at least 4 characters long!
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Telephone</label>
+                          <div class="ms-auto position-relative">
+                            <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-telephone-fill"></i></div>
+                            <input type="tel" class="form-control radius-30 ps-5" name="tel" [(ngModel)]="exposantForm.tel">
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Image</label>
+                          <input type="file" class="form-control" name="image" (change)="onFileChange($event)">
+                        </div>
+                        <div class="col-12">
+                          <div class="d-grid">
+                            <button type="submit" class="btn btn-primary radius-30">Register as Exposant</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <p class="mb-0">Retourner à la page de sign in <a (click)="onClick1()" style="color:#1a2232;text-decoration: underline">Cliquez ici</a></p>
+                      </div>
+                    </form>
+
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!--end page main-->
+
+  </div>
+</ng-container>
+<ng-template #elseBlock>
+
+  <main class="authentication-content">
+    <div class="container-fluid">
+      <div class="authentication-card">
+        <div class="card shadow rounded-0 overflow-hidden">
+          <div class="row g-0">
+            <div class="col-lg-6 bg-login d-flex align-items-center justify-content-center">
+              <img src="assets/images/error/login-img.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6">
+              <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title">Sign Up</h5>
+                <p class="card-text mb-5">See your growth and get consulting support!</p>
+                <form class="form-body" (ngSubmit)="onSubmit()">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="inputName" class="form-label">Username</label>
+                      <div class="ms-auto position-relative">
+                        <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-person-circle"></i></div>
+                        <input type="text" class="form-control radius-30 ps-5" id="inputName" placeholder="Enter Username" [(ngModel)]="form.username" name="username" required>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="inputEmail" class="form-label">Email Address</label>
+                      <div class="ms-auto position-relative">
+                        <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-envelope-fill"></i></div>
+                        <input type="email" class="form-control radius-30 ps-5" id="inputEmail" placeholder="Enter Email Address" [(ngModel)]="form.email" name="email" required>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="inputPassword" class="form-label">Password</label>
+                      <div class="ms-auto position-relative">
+                        <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-lock-fill"></i></div>
+                        <input type="password" class="form-control radius-30 ps-5" id="inputPassword" placeholder="Enter Password" [(ngModel)]="form.password" name="password" required>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="inputTel" class="form-label">Telephone</label>
+                      <div class="ms-auto position-relative">
+                        <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-telephone-fill"></i></div>
+                        <input type="tel" class="form-control radius-30 ps-5" id="inputTel" placeholder="Enter Telephone Number" [(ngModel)]="form.tel" name="tel">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="image" class="form-label">Image</label>
+                      <input id="image" name="image" type="file" class="form-control" (change)="onFileChange($event)">
+
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">I Agree to the Terms & Conditions</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-grid">
+                        <button type="submit" class="btn btn-primary radius-30">Sign Up</button>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <p class="mb-0">Already have an account? <a (click)="onClick()">Sign in here</a></p>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</ng-template>
+

@@ -1,0 +1,44 @@
+<main class="page-content">
+
+  <div class="table mt-3">
+    <div class="card-body">
+    <table class="table align-middle mb-0 text-center">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date de Reclamation</th>
+          <th scope="col">Status</th>
+          <th scope="col">Image</th>
+          <th scope="col">User</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of ToShow; let idx = index">
+          <td>{{ item.titre }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.dateDeReclamation | date:'yyyy-MM-dd'}}</td>
+          <td>
+                <span [ngClass]="{'badge bg-light-success text-success w-100': item.status, 'badge bg-light-warning text-warning w-100': !item.status}">
+                  {{ item.status ? 'Treated' : 'Not Treated' }}
+                </span>
+          </td>
+          <td><img [src]="item.image" width="50px" height="50px"></td>
+          <td>{{ item.user?.username }}</td>
+          <td>
+            <ng-container *ngIf="roleConnected === 'ROLE_EXPOSANT' || roleConnected === 'ROLE_ETUDIANT'">
+              <button (click)="modifierEtud(item.idReclamation)" class="btn btn-sm" [disabled]="item.status">
+                <i class="bi bi-pencil text-warning"></i>
+              </button>
+              <button (click)="delete(item.idReclamation)" class="btn btn-sm me-1">
+                <i class="bi bi-trash text-danger"></i>
+              </button>
+            </ng-container>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

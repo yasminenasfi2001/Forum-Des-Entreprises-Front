@@ -1,0 +1,19 @@
+<main class="page-content" style="margin-top: -600px">
+  <div class="container">
+    <h2>Verify Your Account</h2>
+    <div class="form-group">
+      <label for="verificationCode">Verification Code:</label>
+      <input type="text" class="form-control" id="verificationCode" [(ngModel)]="verificationCode">
+    </div>
+    <button class="btn btn-primary" (click)="verifyVerificationCode()">Verify</button>
+  </div>
+
+  <div class="container mt-5">
+    <h2>Verify Your Phone Number</h2>
+    <div class="form-group">
+      <label for="verificationCodetel">Verification Code (Phone):</label>
+      <input type="text" class="form-control" id="verificationCodetel" [(ngModel)]="verificationCodetel">
+    </div>
+    <button class="btn btn-primary" (click)="verifyPhoneNumber()">Verify Phone Number</button>
+  </div>
+</main>

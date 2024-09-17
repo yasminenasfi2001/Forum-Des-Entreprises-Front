@@ -1,0 +1,29 @@
+<main class="page-content" >
+  <div class="card bg-transparent shadow-none">
+            <div class="card-header"><h6 class="mb-0 text-uppercase">Liste des Offres</h6></div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-lg-3 justify-content-center g-lg-5">
+                    <div class="col" *ngFor="let i of ToShow">
+                        <div class="card">
+                            <div class="card-header">
+                                <a (click)="details(i.idOffre)" ><i class="bi bi-stack"> Plus d'informations</i></a>
+                            </div>
+
+                           <img [src]="i.image" height="100px" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.intitule}}</h5>
+                                <p class="card-text">Description : {{i.description}}</p>
+                                <p class="card-text">Nombre de places : {{i.nbPlaces}}</p>
+                                <p class="card-text"> {{i.dateDeCreation | date:'yyyy-MM-dd'}}</p>
+                                <a (click)="edit(i.idOffre)" class="btn btn-outline-secondary" style="margin-right: 2px"><i class="bi bi-pen-fill"></i>Modifier</a>
+                                <a (click)="delete(i.idOffre)" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i>Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+

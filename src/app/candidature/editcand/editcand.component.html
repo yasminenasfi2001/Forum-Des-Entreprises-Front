@@ -1,0 +1,127 @@
+<ng-container *ngIf="connectedRole === 'ROLE_ETUDIANT'">
+  <main class="page-content">
+    <div class="card shadow">
+      <div class="card-header">
+        <h6 class="mb-0 text-uppercase">Modifier cette Candidature</h6>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-6 mx-auto">
+
+            <div class="card">
+              <div class="card-body">
+                <div class="border p-3 rounded">
+                  <h6 class="mb-0 text-uppercase" >Formulaire de modification</h6>
+                  <hr/>
+                  <form class="row g-3" (ngSubmit)="update()">
+                    <div class="col-12">
+                      <label class="form-label">Experience</label>
+                      <input id="experience" name="experience" type="text" class="form-control" [(ngModel)]="cand.experience" required minlength="10">
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Compétence</label>
+                      <input class="form-control" id="competence" name="competence" [(ngModel)]="cand.competence" type="text" >
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Formations</label>
+                      <input class="form-control" id="formation" name="formation" [(ngModel)]="cand.formation" type="text" >
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Langues</label>
+                      <input class="form-control" id="langues" name="langues" [(ngModel)]="cand.langues" type="text" >
+                    </div>
+
+                    <div class="card-body text-center">
+                      <button type="submit" class="btn btn-outline-success px-5 rounded-0">Modifier</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</ng-container>
+<ng-container *ngIf="connectedRole === 'ROLE_EXPOSANT'">
+  <main class="page-content">
+    <div class="card shadow">
+      <div class="card-header">
+        <ng-container *ngIf="placesDispo == 0; ">
+          <div class="alert-box">
+            <div class="alert-icon">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+            </div>
+            <div class="alert-message">
+              Il n'y a plus de places disponibles. Vous ne pouvez plus accepter des candidats!
+            </div>
+          </div>
+        </ng-container>
+        <br>
+        <h6 class="mb-0 text-uppercase">Modifier cette Candidature</h6>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-6 mx-auto">
+            <div class="card">
+              <div class="card-body">
+                <div class="border p-3 rounded">
+                  <ng-container *ngIf="placesDispo !== 0; else elseBlockForm">
+                    <h6 class="mb-0 text-uppercase">Formulaire de modification</h6>
+                    <hr />
+                    <form class="row g-3" (ngSubmit)="update1()">
+                      <div class="col-12">
+                        <label class="form-label">Status</label>
+                        <select id="statuss" name="status" class="form-control" [(ngModel)]="cand1.status" (change)="onStatusChange()" required>
+                          <option value="Encours" [disabled]="cand1.status !== 'Encours'">En cours</option>
+                          <option value="Traitee" [disabled]="cand1.status !== 'Encours' && cand1.status !== 'Traitee'">Traité</option>
+                          <option value="Refusee" [disabled]="cand1.offre.placesDispo === 0 || cand1.status === 'Encours' ||  cand1.status === 'Acceptee'">Refusé</option>
+                          <option value="Acceptee" [disabled]="cand1.status === 'Encours' || cand1.status === 'Refusee'">Accepté</option>
+                        </select>
+                      </div>
+                      <div *ngIf="showRemarque" class="col-12">
+                        <label class="form-label">Remarque</label>
+                        <input class="form-control" id="remarque" name="remarque" [(ngModel)]="cand1.remarque" type="text">
+                      </div>
+                      <div class="card-body text-center">
+                        <button type="submit" class="btn btn-outline-success px-5 rounded-0">Modifier</button>
+                      </div>
+                    </form>
+                  </ng-container>
+                  <ng-template #elseBlockForm>
+                    <h6 class="mb-0 text-uppercase">Formulaire de modification</h6>
+                    <hr />
+                    <form class="row g-3" (ngSubmit)="update1()">
+                      <div class="col-12">
+                        <label class="form-label">Status</label>
+                        <select id="status" name="status" class="form-control" [(ngModel)]="cand1.status" (change)="onStatusChange()" required>
+                          <option value="Encours" [disabled]="true">En cours</option>
+                          <option value="Traitee" [disabled]="true">Traité</option>
+                          <option value="Refusee">Refusé</option>
+                          <option value="Acceptee" [disabled]="true">Accepté</option>
+                        </select>
+                      </div>
+                      <div *ngIf="showRemarque" class="col-12">
+                        <label class="form-label">Remarque</label>
+                        <input class="form-control" id="remarquee" name="remarque" [(ngModel)]="cand1.remarque" type="text" placeholder="Pas assez de places">
+                      </div>
+                      <div class="card-body text-center">
+                        <button type="submit" class="btn btn-outline-success px-5 rounded-0">Modifier</button>
+                      </div>
+                    </form>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</ng-container>
+

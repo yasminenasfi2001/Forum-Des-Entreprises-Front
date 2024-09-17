@@ -1,0 +1,72 @@
+<main class="page-content">
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="mb-0">Les Matériels</h5>
+          <input class="form-control" type="text" [(ngModel)]="intitule"
+                 (ngModelChange)="Search()"
+                 placeholder="Rechercher un matériel par intitulé">
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table table-striped table-bordered">
+            <thead class="table-light">
+            <tr>
+              <th>Intitulé</th>
+              <th>Nombre de pièces</th>
+              <th>Pack</th>
+              <th>Prix</th>
+              <th>qrCode</th>
+              <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!-- <tr *ngFor="let fournisseur of fournisseurs; let i = index">
+              <td>{{fournisseur.intitule}}</td>
+              <td>{{fournisseur.nbPieces}}</td>
+              <td>{{fournisseur.pack}}</td>
+              <td>{{fournisseur.prix}}</td>
+              <td>
+                <img *ngIf="qrCodeUrls[fournisseur.id]" [src]="qrCodeUrls[fournisseur.id]" alt="QR Code">
+
+              </td>
+
+              <td>
+                <div class="d-flex justify-content-around">
+                  <button class="btn btn-primary"
+                    (click)="modify(fournisseur.idMateriel)">Modifier</button>
+                  <button class="btn btn-danger" data-toggle="modal"
+                    (click)="deleteSession(fournisseur.idMateriel); delete(i);">Supprimer</button>
+                  <button class="btn btn-success"
+                    (click)="pay()">Payer</button>
+                </div>
+              </td>
+
+            </tr> -->
+            <tr *ngFor="let fournisseur of fournisseurs; let i = index">
+              <td>{{fournisseur.intitule}}</td>
+              <td>{{fournisseur.nbPieces}}</td>
+              <td>{{fournisseur.pack}}</td>
+              <td>{{fournisseur.prix}}</td>
+              <td>
+                <img *ngIf="qrCodeUrls[fournisseur.id]" [src]="qrCodeUrls[fournisseur.id]" alt="QR Code">
+              </td>
+              <td>
+                <div class="d-flex justify-content-around">
+                  <button class="btn btn-primary" (click)="modify(fournisseur.idMateriel)">Modifier</button>
+                  <button class="btn btn-danger" data-toggle="modal"
+                          (click)="deleteSession(fournisseur.idMateriel); delete(i);">Supprimer
+                  </button>
+                 <!-- <button class="btn btn-success" (click)="pay()">Payer</button>-->
+                </div>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

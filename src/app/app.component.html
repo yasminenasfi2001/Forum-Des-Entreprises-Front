@@ -1,0 +1,124 @@
+<ng-container *ngIf="isLoggedIn==true;else elseBlock">
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</ng-container>
+<ng-template #elseBlock>
+  <app-login></app-login>
+</ng-template>
+
+
+<div class="switcher-body">
+  <button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
+    class="bi bi-paint-bucket me-0"></i></button>
+  <div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false"
+       tabindex="-1" id="offcanvasScrolling" style="visibility: hidden;" aria-hidden="true">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Customizer</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <h6 class="mb-0">Theme Variation</h6>
+      <hr>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="LightTheme" value="option1"
+               checked="">
+        <label class="form-check-label" for="LightTheme">Light</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="DarkTheme" value="option2">
+        <label class="form-check-label" for="DarkTheme">Dark</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3">
+        <label class="form-check-label" for="SemiDarkTheme">Semi Dark</label>
+      </div>
+      <hr>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="MinimalTheme" value="option3">
+        <label class="form-check-label" for="MinimalTheme">Minimal Theme</label>
+      </div>
+      <hr>
+      <h6 class="mb-0">Header Colors</h6>
+      <hr>
+      <div class="header-colors-indigators">
+        <div class="row row-cols-auto g-3">
+          <div class="col">
+            <div class="indigator headercolor1" id="headercolor1"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor2" id="headercolor2"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor3" id="headercolor3"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor4" id="headercolor4"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor5" id="headercolor5"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor6" id="headercolor6"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor7" id="headercolor7"></div>
+          </div>
+          <div class="col">
+            <div class="indigator headercolor8" id="headercolor8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-container *ngIf="roleConnected=='ROLE_ETUDIANT'">
+  <div class="switcher-body">
+    <button class="btn btn-primary btn-favoris shadow-sm" type="button" (click)="showWishlist()"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling1" aria-controls="offcanvasScrolling1"><i
+      class="bi bi-star-fill me-0"></i></button>
+    <div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false"
+         tabindex="-1" id="offcanvasScrolling1" style="visibility: hidden;" aria-hidden="true">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel1">Liste des souhaits</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h6 class="mb-0">Wishlist Items</h6>
+        <hr>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of wishlistItems">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h6>{{ item.intitule }}</h6>
+                <p>{{ item.description }}</p>
+
+              </div>
+              <div>
+                <img [src]="item.image" alt="{{ item.intitule }}" width="50px" height="50px">
+              </div>
+              <div>
+                <button class="btn btn-danger" (click)="removeFromWishlist(item)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<footer class="bg-light border-top p-3 text-center fixed-bottom">
+  <p class="mb-0">Copyright © 2024. All right reserved. Suivez nous :
+    <a href="https://www.facebook.com/esprit.tn" target="_blank" style="margin-right: 5px"><i class="bi bi-facebook"></i></a>
+    <a href="https://www.instagram.com/esprit_ingenieur/" target="_blank" style="margin-right: 5px"><i class="bi bi-instagram" style=" background-color: #8a3ab9;background-image: linear-gradient(45deg, #8a3ab9, #bc2a8d, #e95950, #fccc63, #fbad50, #cd486b, #4c68d7);background-size: 100%;background-repeat: repeat;-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent;"></i></a>
+    <a href="https://twitter.com/Esprit_News" target="_blank" style="margin-right: 5px"><img src="assets/x-social-media-logo-icon.svg" width="18px" height="18px"></a>
+    <a href="https://www.linkedin.com/school/esprit_2/" target="_blank" style="margin-right: 5px"><i class="bi bi-linkedin" style="color: #0a66c2"></i></a>
+    <a href="https://www.youtube.com/channel/UCJ5wuQ9AQYtpf9Arieu3iXA" target="_blank" style="margin-right: 5px"><i class="bi bi-youtube text-danger"></i></a>
+  </p>
+</footer>
+

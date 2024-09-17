@@ -1,0 +1,63 @@
+
+<style>
+
+
+  .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  }
+
+  .profile-info {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-info p {
+  margin-bottom: 10px;
+  }
+
+  .image-container {
+  margin-top: 20px;
+  }
+
+  .image-container img {
+  max-width: 200px;
+  height: auto;
+  }
+
+  .loading-text {
+  text-align: center;
+  font-style: italic;
+  color: #888888;
+  }
+
+</style>
+  <main class="page-content">
+    <div class="container">
+      <h2>My Profile</h2>
+      <div class="profile-info">
+        <div *ngIf="user">
+          <p><strong>Username:</strong> {{ user.username }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Telephone:</strong> {{ user.tel }}</p>
+          <div class="image-container">
+            <strong>Image:</strong>
+            <img *ngIf="user.image" [src]="user.image" alt="User Image">
+            <span *ngIf="!user.image">No Image Available</span>
+          </div>
+        </div>
+        <div *ngIf="!user" class="loading-text">Loading...</div>
+      </div>
+    </div>
+  </main>

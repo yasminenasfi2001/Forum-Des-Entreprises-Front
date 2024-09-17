@@ -1,0 +1,43 @@
+<main class="page-content">
+  <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <h1 class="card-body text-center">Ajouter Reclamation</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <div class="border p-3 rounded">
+            <h6 class="mb-3 text-uppercase">Formulaire d'ajout</h6>
+            <hr/>
+            <form class="row g-3" *ngIf="!submitted">
+              <div class="col-12">
+                <label for="titre" class="form-label">Titre</label>
+                <input id="titre" name="titre" type="text" class="form-control" required minlength="10" [(ngModel)]="reclamation.titre">
+              </div>
+
+              <div class="col-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="description" class="form-control" rows="4" cols="4" [(ngModel)]="reclamation.description"></textarea>
+              </div>
+
+              <div class="col-12">
+                <label for="image" class="form-label">Image</label>
+                <input id="image" name="image" type="file" class="form-control" (change)="onFileChange($event)">
+              </div>
+
+              <div class="col-12 text-center">
+                <ng-container *ngIf="roleConnected=='ROLE_ETUDIANT'">
+                <button (click)="save()" class="btn btn-success px-5 mt-3">Ajouter</button>
+                </ng-container>
+                <ng-container *ngIf="roleConnected=='ROLE_EXPOSANT'">
+                  <button (click)="save1()" class="btn btn-success px-5 mt-3">Ajouter</button>
+                </ng-container>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

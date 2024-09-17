@@ -1,0 +1,148 @@
+
+<main class="page-content" >
+
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="card-header">
+        <ng-container *ngIf="rev">
+          Votre Evaluation
+          <ng-container *ngFor="let fullStar of [].constructor(Math.floor(calculateStarDisplay()))">
+            <i class="bi bi-star-fill text-warning"></i>
+          </ng-container>
+          <ng-container *ngIf="calculateStarDisplay() - Math.floor(calculateStarDisplay()) === 0.5">
+            <i class="bi bi-star-half text-warning  "></i>
+          </ng-container>
+          <ng-container *ngFor="let emptyStar of [].constructor(5 - Math.ceil(calculateStarDisplay()))">
+            <i class="bi bi-star text-warning"></i>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!rev">
+          <div *ngIf="cand?.status === 'Acceptee' || cand?.status === 'Refusee'" class="rating-container">
+            <h4 class="text-black-50" style="margin-right: 10px">Evaluer votre expérience dans cet offre </h4>
+            <div class="rating">
+              <input type="radio" id="star5" name="rating" value="5" (click)="handleRatingClick($event)">
+              <label for="star5"><i class="bi bi-star" style="font-size: 20px"></i></label>
+              <input type="radio" id="star4" name="rating" value="4" (click)="handleRatingClick($event)">
+              <label for="star4"><i class="bi bi-star" style="font-size: 20px"></i></label>
+              <input type="radio" id="star3" name="rating" value="3" (click)="handleRatingClick($event)">
+              <label for="star3"><i class="bi bi-star" style="font-size: 20px"></i></label>
+              <input type="radio" id="star2" name="rating" value="2" (click)="handleRatingClick($event)">
+              <label for="star2"><i class="bi bi-star" style="font-size: 20px"></i></label>
+              <input type="radio" id="star1" name="rating" value="1" (click)="handleRatingClick($event)">
+              <label for="star1"><i class="bi bi-star" style="font-size: 20px"></i></label>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="container py-2">
+        <h2 class="font-weight-light text-center text-muted py-3">Timeline de Votre Candidature à {{cand?.offre?.intitule  }}</h2>
+        <div class="row g-0">
+          <div class="col-sm"></div>
+          <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+            <div class="row h-50">
+              <div class="col">&nbsp;</div>
+              <div class="col">&nbsp;</div>
+            </div>
+            <h5 class="m-2">
+              <span class="badge rounded-pill bg-warning border">&nbsp;</span>
+            </h5>
+            <div class="row h-50">
+              <div class="col border-end">&nbsp;</div>
+              <div class="col">&nbsp;</div>
+            </div>
+          </div>
+          <div class="col-sm py-2">
+            <div class="card border-warning radius-15">
+              <div class="card-body">
+                <div class="float-end text-warning small">{{cand?.dateDeCandidature | date:'MMM d, y H:mm'}}</div>
+                <h4 class="card-title text-warning">Candidature</h4>
+                <p class="card-text"> Compétences : {{cand?.competence}}, Experience : {{cand?.experience}}<br> Langues : {{cand?.langues}}</p>
+                <p class="card-text">Vous avez soumis votre candidature.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deuxième étape du timeline -->
+        <div *ngIf="cand?.status !== 'Encours'" class="row g-0">
+          <div class="col-sm py-2">
+            <div class="card border-primary shadow radius-15">
+              <div class="card-body">
+                <div class="float-end text-primary small">{{cand?.dateDeMiseEnTrt | date:'MMM d, y H:mm'}}</div>
+                <h4 class="card-title text-primary">Mise en Traitement</h4>
+                <p class="card-text">Votre candidature est en cours de traitement.</p>
+                <button *ngIf="cand.status !== 'Acceptee' && cand.status !== 'Refusee'" (click)="goToSharedRoom()" class="btn btn-outline-primary"><i class="bi bi-camera-video-fill"></i> Rejoindre la réunion</button>
+                <p *ngIf="cand.status === 'Acceptee'">Entretien réalisé avec succès.</p>
+                <p *ngIf="cand.status === 'Refusee'">Entretien réalisé avec succès.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+            <div class="row h-50">
+              <div class="col border-end">&nbsp;</div>
+              <div class="col">&nbsp;</div>
+            </div>
+            <h5 class="m-2">
+              <span class="badge rounded-pill bg-primary">&nbsp;</span>
+            </h5>
+            <div class="row h-50">
+              <div class="col border-end">&nbsp;</div>
+              <div class="col">&nbsp;</div>
+            </div>
+          </div>
+          <div class="col-sm">
+          </div>
+        </div>
+        <div *ngIf="cand?.status === 'Acceptee' && cand?.status !== 'Traitee'" class="row g-0">
+          <div class="col-sm">
+          </div>
+          <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+            <div class="row h-50">
+              <div class="col border-end">&nbsp;</div>
+              <div class="col">&nbsp;</div>
+            </div>
+            <h5 class="m-2">
+              <span class="badge rounded-pill bg-success border">&nbsp;</span>
+            </h5>
+          </div>
+          <div class="col-sm py-2">
+            <div class="card border-success radius-15">
+              <div class="card-body">
+                <div class="float-end text-success small">{{cand?.dateDAcceptance | date:'MMM d, y H:mm'}}</div>
+                <h4 class="card-title text-success">Acceptation</h4>
+                <p>Status : {{cand?.status}}</p>
+                <p>Votre candidature a été acceptée.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="cand?.status === 'Refusee' && cand?.status !== 'Traitee'" class="row g-0">
+          <div class="col-sm">
+          </div>
+          <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+            <div class="row h-50">
+              <div class="col border-end">&nbsp;</div>
+              <div class="col">&nbsp;</div>
+            </div>
+            <h5 class="m-2">
+              <span class="badge rounded-pill bg-danger border">&nbsp;</span>
+            </h5>
+          </div>
+          <div class="col-sm py-2">
+            <div class="card border-danger radius-15">
+              <div class="card-body">
+                <div class="float-end text-danger small">{{cand?.datedeRefus | date:'MMM d, y H:mm'}}</div>
+                <h4 class="card-title text-danger">Refus</h4>
+                <p>Status : {{cand?.status}}</p>
+                <p>Raison de refus : {{cand?.remarque}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>

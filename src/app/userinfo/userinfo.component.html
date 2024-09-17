@@ -1,0 +1,75 @@
+<main class="page-content">
+  <div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="profile-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" class="form-control">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+
+      <label for="tel">Phone:</label>
+      <input type="tel" id="tel" formControlName="tel" class="form-control">
+
+      <div class="col-12">
+        <label for="image" class="form-label">Image</label>
+        <input id="image" name="image" type="file" class="form-control" (change)="onFileChange($event)">
+      </div>
+
+      <label for="oldPassword">Old Password:</label>
+      <input type="password" id="oldPassword" formControlName="oldPassword" class="form-control">
+
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" formControlName="newPassword" class="form-control">
+
+      <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+  </div>
+</main>
+<style>
+
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-form {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .profile-form input[type="text"],
+  .profile-form input[type="email"],
+  .profile-form input[type="tel"],
+  .profile-form input[type="password"],
+  .profile-form input[type="file"],
+  .profile-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .profile-form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .profile-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+</style>
